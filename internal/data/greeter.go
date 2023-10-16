@@ -3,21 +3,20 @@ package data
 import (
 	"context"
 
-	"github.com/go-kratos/kratos-layout/internal/biz"
-
-	"github.com/go-kratos/kratos/v2/log"
+	"github.com/nextmicro/logger"
+	"github.com/nextmicro/next-layout/internal/biz"
 )
 
 type greeterRepo struct {
 	data *Data
-	log  *log.Helper
+	log  logger.Logger
 }
 
 // NewGreeterRepo .
-func NewGreeterRepo(data *Data, logger log.Logger) biz.GreeterRepo {
+func NewGreeterRepo(data *Data, logger logger.Logger) biz.GreeterRepo {
 	return &greeterRepo{
 		data: data,
-		log:  log.NewHelper(logger),
+		log:  logger,
 	}
 }
 

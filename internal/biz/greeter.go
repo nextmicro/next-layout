@@ -3,10 +3,10 @@ package biz
 import (
 	"context"
 
-	v1 "github.com/go-kratos/kratos-layout/api/helloworld/v1"
+	"github.com/nextmicro/logger"
+	v1 "github.com/nextmicro/next-layout/api/helloworld/v1"
 
 	"github.com/go-kratos/kratos/v2/errors"
-	"github.com/go-kratos/kratos/v2/log"
 )
 
 var (
@@ -31,12 +31,12 @@ type GreeterRepo interface {
 // GreeterUsecase is a Greeter usecase.
 type GreeterUsecase struct {
 	repo GreeterRepo
-	log  *log.Helper
+	log  logger.Logger
 }
 
 // NewGreeterUsecase new a Greeter usecase.
-func NewGreeterUsecase(repo GreeterRepo, logger log.Logger) *GreeterUsecase {
-	return &GreeterUsecase{repo: repo, log: log.NewHelper(logger)}
+func NewGreeterUsecase(repo GreeterRepo, logger logger.Logger) *GreeterUsecase {
+	return &GreeterUsecase{repo: repo, log: logger}
 }
 
 // CreateGreeter creates a Greeter, and returns the new Greeter.

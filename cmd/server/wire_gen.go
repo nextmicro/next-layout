@@ -7,31 +7,38 @@
 package main
 
 import (
-	"github.com/go-kratos/kratos-layout/internal/biz"
-	"github.com/go-kratos/kratos-layout/internal/conf"
-	"github.com/go-kratos/kratos-layout/internal/data"
-	"github.com/go-kratos/kratos-layout/internal/server"
-	"github.com/go-kratos/kratos-layout/internal/service"
+	"github.com/nextmicro/logger"
+	"github.com/nextmicro/next"
+	"github.com/nextmicro/next-layout/internal/biz"
+	"github.com/nextmicro/next-layout/internal/conf"
+	"github.com/nextmicro/next-layout/internal/data"
+	"github.com/nextmicro/next-layout/internal/server"
+	"github.com/nextmicro/next-layout/internal/service"
+)
 
-	"github.com/go-kratos/kratos/v2"
-	"github.com/go-kratos/kratos/v2/log"
+import (
+	_ "go.uber.org/automaxprocs"
 )
 
 // Injectors from wire.go:
 
 // wireApp init kratos application.
-func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
-	dataData, cleanup, err := data.NewData(confData, logger)
+func wireApp(confServer *conf.Server, confData *conf.Data, loggerLogger logger.Logger) (*next.Next, func(), error) {
+	dataData, cleanup, err := data.NewData(confData, loggerLogger)
 	if err != nil {
 		return nil, nil, err
 	}
-	greeterRepo := data.NewGreeterRepo(dataData, logger)
-	greeterUsecase := biz.NewGreeterUsecase(greeterRepo, logger)
+	greeterRepo := data.NewGreeterRepo(dataData, loggerLogger)
+	greeterUsecase := biz.NewGreeterUsecase(greeterRepo, loggerLogger)
 	greeterService := service.NewGreeterService(greeterUsecase)
-	grpcServer := server.NewGRPCServer(confServer, greeterService, logger)
-	httpServer := server.NewHTTPServer(confServer, greeterService, logger)
-	app := newApp(logger, grpcServer, httpServer)
-	return app, func() {
+	grpcServer := server.NewGRPCServer(confServer, greeterService, loggerLogger)
+	httpServer := server.NewHTTPServer(confServer, greeterService, loggerLogger)
+	nextNext, err := newApp(loggerLogger, grpcServer, httpServer)
+	if err != nil {
+		cleanup()
+		return nil, nil, err
+	}
+	return nextNext, func() {
 		cleanup()
 	}, nil
 }
