@@ -30,4 +30,14 @@ server:
   grpc:
     addr: '0.0.0.0:9000'
     timeout: 1s
-    middlewares: []
+    middlewares:
+      - name: logging
+        options:
+          '@type': type.googleapis.com/next.middleware.logging.v1.Logging
+      - name: metadata
+        options:
+          '@type': type.googleapis.com/next.middleware.metadata.v1.Metadata
+          prefix: []
+      - name: tracing
+        options:
+          '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
