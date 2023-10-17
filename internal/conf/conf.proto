@@ -1,5 +1,5 @@
 syntax = "proto3";
-package kratos.api;
+package next.api;
 
 option go_package = "github.com/nextmicro/next-layout/internal/conf;conf";
 

@@ -1,21 +1,21 @@
-# Kratos Project Template
+# Next Project Template
 
-## Install Kratos
+## Install Next
 ```
-go install github.com/go-kratos/kratos/cmd/kratos/v2@latest
+go install github.com/nextmicro/cli/cmd/next@latest
 ```
 ## Create a service
 ```
 # Create a template project
-kratos new server
+next new server
 
 cd server
 # Add a proto template
-kratos proto add api/server/server.proto
+next proto add api/server/server.proto
 # Generate the proto code
-kratos proto client api/server/server.proto
+next proto client api/server/server.proto
 # Generate the source code of service by proto file
-kratos proto server api/server/server.proto -t internal/service
+next proto server api/server/server.proto -t internal/service
 
 go generate ./...
 go build -o ./bin/ ./...

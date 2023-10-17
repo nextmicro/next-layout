@@ -17,7 +17,7 @@ import (
 	"github.com/google/wire"
 )
 
-// wireApp init kratos application.
+// wireApp init next application.
 func wireApp(*conf.Data, logger.Logger) (*next.Next, func(), error) {
 	panic(wire.Build(server.ProviderSet, data.ProviderSet, biz.ProviderSet, service.ProviderSet, newApp))
 }
