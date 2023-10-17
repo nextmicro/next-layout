@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"os"
+	"path/filepath"
 
 	"github.com/nextmicro/logger"
 	"github.com/nextmicro/next"
@@ -46,7 +47,7 @@ func newApp(logger logger.Logger, gs *grpc.Server, hs *http.Server) (*next.Next,
 
 func main() {
 	flag.Parse()
-	c, err := config.Init(flagconf)
+	c, err := config.Init(filepath.Join(flagconf, config.BizConfFile()))
 	if err != nil {
 		panic(err)
 	}
@@ -57,7 +58,7 @@ func main() {
 		panic(err)
 	}
 
-	app, cleanup, err := wireApp(bc.Server, bc.Data, logger.DefaultLogger)
+	app, cleanup, err := wireApp(bc.Data, logger.DefaultLogger)
 	if err != nil {
 		panic(err)
 	}

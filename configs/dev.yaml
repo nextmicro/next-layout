@@ -1,0 +1,33 @@
+id: '1001'
+name: gateway
+version: v1.0.2-beta2
+metadata:
+  color: feature-v1
+logger:
+  level: debug
+  console: true
+registry:
+  name: consul
+  addrs: '127.0.0.1:8500'
+tracing:
+  endpoint: 'http://127.0.0.1:14268/api/traces'
+  sampler: 1
+server:
+  http:
+    addr: '0.0.0.0:8000'
+    timeout: 1s
+    middlewares:
+      - name: logging
+        options:
+          '@type': type.googleapis.com/next.middleware.logging.v1.Logging
+      - name: metadata
+        options:
+          '@type': type.googleapis.com/next.middleware.metadata.v1.Metadata
+          prefix: []
+      - name: tracing
+        options:
+          '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
+  grpc:
+    addr: '0.0.0.0:9000'
+    timeout: 1s
+    middlewares: []
