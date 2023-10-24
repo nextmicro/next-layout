@@ -22,7 +22,7 @@ import (
 
 // Injectors from wire.go:
 
-// wireApp init kratos application.
+// wireApp init next application.
 func wireApp(confData *conf.Data, loggerLogger logger.Logger) (*next.Next, func(), error) {
 	dataData, cleanup, err := data.NewData(confData, loggerLogger)
 	if err != nil {
