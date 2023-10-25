@@ -6,7 +6,7 @@ require (
 	github.com/go-kratos/kratos/v2 v2.7.1
 	github.com/google/wire v0.5.0
 	github.com/nextmicro/logger v1.0.3
-	github.com/nextmicro/next v1.0.0
+	github.com/nextmicro/next v1.0.1-0.20231025174132-d41ca452bbbf
 	go.uber.org/automaxprocs v1.5.1
 	google.golang.org/genproto/googleapis/api v0.0.0-20231016165738-49dd2c1f3d0b
 	google.golang.org/grpc v1.59.0
@@ -15,7 +15,7 @@ require (
 
 require (
 	github.com/Shopify/sarama v1.38.1 // indirect
-	github.com/aliyun/alibaba-cloud-sdk-go v1.62.588 // indirect
+	github.com/aliyun/alibaba-cloud-sdk-go v1.62.589 // indirect
 	github.com/armon/go-metrics v0.4.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
@@ -40,7 +40,6 @@ require (
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
-	github.com/google/subcommands v1.0.1 // indirect
 	github.com/google/uuid v1.3.1 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/hashicorp/consul/api v1.25.1 // indirect
@@ -78,7 +77,6 @@ require (
 	github.com/openzipkin/zipkin-go v0.4.2 // indirect
 	github.com/pierrec/lz4/v4 v4.1.18 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/power-devops/perfstat v0.0.0-20221212215047-62379fc7944b // indirect
 	github.com/prometheus/client_golang v1.17.0 // indirect
 	github.com/prometheus/client_model v0.5.0 // indirect
