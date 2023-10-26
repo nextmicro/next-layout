@@ -28,13 +28,13 @@ server:
       - name: logging
         options:
           '@type': type.googleapis.com/next.middleware.logging.v1.Logging
+      - name: tracing
+        options:
+          '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
       - name: metadata
         options:
           '@type': type.googleapis.com/next.middleware.metadata.v1.Metadata
           prefix: []
-      - name: tracing
-        options:
-          '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
   grpc:
     addr: '0.0.0.0:9000'
     timeout: 1s
@@ -42,10 +42,10 @@ server:
       - name: logging
         options:
           '@type': type.googleapis.com/next.middleware.logging.v1.Logging
+      - name: tracing
+        options:
+          '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
       - name: metadata
         options:
           '@type': type.googleapis.com/next.middleware.metadata.v1.Metadata
           prefix: []
-      - name: tracing
-        options:
-          '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
