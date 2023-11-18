@@ -1,9 +1,9 @@
 # ID
 id: '1001'
 # 名称
-name: gateway
+name: next-layout
 # 版本号
-version: v1.0.2-beta2
+version: v1.0.0
 # 服务元数据
 metadata:
   color: feature-v1
@@ -17,8 +17,9 @@ registry:
   addrs: '127.0.0.1:8500'
 # 链路追踪配置
 tracing:
-  endpoint: 'http://127.0.0.1:14268/api/traces'
+  endpoint: '127.0.0.1:4317'
   sampler: 1
+  exporter: otlpgrpc
 # 服务配置
 server:
   http:
@@ -28,6 +29,9 @@ server:
       - name: logging
         options:
           '@type': type.googleapis.com/next.middleware.logging.v1.Logging
+      - name: metrics
+        options:
+          '@type': type.googleapis.com/next.middleware.metrics.v1.Metrics
       - name: tracing
         options:
           '@type': type.googleapis.com/next.middleware.tracing.v1.Tracing
@@ -36,7 +40,7 @@ server:
           '@type': type.googleapis.com/next.middleware.metadata.v1.Metadata
           prefix: []
   grpc:
-    addr: '0.0.0.0:9000'
+    addr: '0.0.0.0:9002'
     timeout: 1s
     middlewares:
       - name: logging
